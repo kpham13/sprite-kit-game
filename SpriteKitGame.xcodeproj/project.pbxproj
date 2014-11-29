@@ -16,6 +16,9 @@
 		0A51580F1A29C2AD00E153D9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A51580E1A29C2AD00E153D9 /* Images.xcassets */; };
 		0A5158121A29C2AD00E153D9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A5158101A29C2AD00E153D9 /* LaunchScreen.xib */; };
 		0A51581E1A29C2AD00E153D9 /* SpriteKitGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A51581D1A29C2AD00E153D9 /* SpriteKitGameTests.m */; };
+		0A51582B1A29C7CA00E153D9 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A5158281A29C7CA00E153D9 /* bg.png */; };
+		0A51582C1A29C7CA00E153D9 /* red-missile.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A5158291A29C7CA00E153D9 /* red-missile.png */; };
+		0A51582D1A29C7CA00E153D9 /* spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A51582A1A29C7CA00E153D9 /* spaceship.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		0A5158171A29C2AD00E153D9 /* SpriteKitGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpriteKitGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A51581C1A29C2AD00E153D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A51581D1A29C2AD00E153D9 /* SpriteKitGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpriteKitGameTests.m; sourceTree = "<group>"; };
+		0A5158281A29C7CA00E153D9 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		0A5158291A29C7CA00E153D9 /* red-missile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-missile.png"; sourceTree = "<group>"; };
+		0A51582A1A29C7CA00E153D9 /* spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spaceship.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,7 @@
 				0A51580B1A29C2AD00E153D9 /* Main.storyboard */,
 				0A51580E1A29C2AD00E153D9 /* Images.xcassets */,
 				0A5158101A29C2AD00E153D9 /* LaunchScreen.xib */,
+				0A5158271A29C7CA00E153D9 /* Game Art */,
 				0A5157FC1A29C2AD00E153D9 /* Supporting Files */,
 			);
 			path = SpriteKitGame;
@@ -125,6 +132,16 @@
 				0A51581C1A29C2AD00E153D9 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0A5158271A29C7CA00E153D9 /* Game Art */ = {
+			isa = PBXGroup;
+			children = (
+				0A5158281A29C7CA00E153D9 /* bg.png */,
+				0A5158291A29C7CA00E153D9 /* red-missile.png */,
+				0A51582A1A29C7CA00E153D9 /* spaceship.png */,
+			);
+			path = "Game Art";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +224,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A51582C1A29C7CA00E153D9 /* red-missile.png in Resources */,
+				0A51582D1A29C7CA00E153D9 /* spaceship.png in Resources */,
+				0A51582B1A29C7CA00E153D9 /* bg.png in Resources */,
 				0A5158121A29C2AD00E153D9 /* LaunchScreen.xib in Resources */,
 				0A51580F1A29C2AD00E153D9 /* Images.xcassets in Resources */,
 				0A5158071A29C2AD00E153D9 /* GameScene.sks in Resources */,
@@ -422,6 +442,7 @@
 				0A5158231A29C2AD00E153D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0A5158241A29C2AD00E153D9 /* Build configuration list for PBXNativeTarget "SpriteKitGameTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +451,7 @@
 				0A5158261A29C2AD00E153D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
