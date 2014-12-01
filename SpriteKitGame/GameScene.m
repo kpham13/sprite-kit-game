@@ -12,9 +12,12 @@ static const uint32_t shipCategory =  0x1 << 0;
 static const uint32_t obstacleCategory =  0x1 << 1;
 
 static const float BG_VELOCITY = 100.0; // Velocity with which our background is going to move
+static const float OBJECT_VELOCITY = 160.0;
+
 static inline CGPoint CGPointAdd(const CGPoint a, const CGPoint b) {
     return CGPointMake(a.x + b.x, a.y + b.y);
 }
+
 static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b) {
     return CGPointMake(a.x * b, a.y * b);
 }
@@ -35,6 +38,7 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b) {
         self.backgroundColor = [SKColor whiteColor];
         [self initalizingScrollingBackground];
         [self addShip];
+        [self addMissile];
         
         // Making self delegate of physics World
         self.physicsWorld.gravity = CGVectorMake(0,0);
@@ -56,6 +60,18 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b) {
             [ship runAction:actionMoveDown];
         }
     }
+}
+
+-(void)update:(CFTimeInterval)currentTime {
+    if (_lastUpdateTime) {
+        _dt = currentTime - _lastUpdateTime;
+    } else {
+        _dt = 0;
+    }
+    _lastUpdateTime = currentTime;
+    
+    [self moveBg];
+    [self moveObstacle];
 }
 
 -(void)addShip {
@@ -104,18 +120,44 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b) {
      }];
 }
 
--(void)update:(CFTimeInterval)currentTime {
-    if (_lastUpdateTime)
-    {
-        _dt = currentTime - _lastUpdateTime;
-    }
-    else
-    {
-        _dt = 0;
-    }
-    _lastUpdateTime = currentTime;
+-(void)addMissile {
+    // Initializing missile node
+    SKSpriteNode *missile;
+    missile = [SKSpriteNode spriteNodeWithImageNamed:@"red-missile.png"];
+    [missile setScale:0.15];
     
-    [self moveBg];
+    // Adding SpriteKit physics body for collision detection
+    missile.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:missile.size];
+    missile.physicsBody.categoryBitMask = obstacleCategory;
+    missile.physicsBody.dynamic = YES;
+    missile.physicsBody.contactTestBitMask = shipCategory;
+    missile.physicsBody.collisionBitMask = 0;
+    missile.physicsBody.usesPreciseCollisionDetection = YES;
+    missile.name = @"missile";
+    
+    // Selecting random y position for missile
+    int r = arc4random() % 300;
+    missile.position = CGPointMake(self.frame.size.width + 20,r);
+    [self addChild:missile];
+}
+
+
+- (void)moveObstacle {
+    NSArray *nodes = self.children;
+    
+    for(SKNode * node in nodes){
+        if (![node.name  isEqual: @"bg"] && ![node.name  isEqual: @"ship"]) {
+            SKSpriteNode *ob = (SKSpriteNode *) node;
+            CGPoint obVelocity = CGPointMake(-OBJECT_VELOCITY, 0);
+            CGPoint amtToMove = CGPointMultiplyScalar(obVelocity,_dt);
+            
+            ob.position = CGPointAdd(ob.position, amtToMove);
+            if(ob.position.x < -100)
+            {
+                [ob removeFromParent];
+            }
+        }
+    }
 }
 
 //-(void)didMoveToView:(SKView *)view {
